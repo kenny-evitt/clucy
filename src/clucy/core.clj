@@ -12,7 +12,7 @@
            (org.apache.lucene.search.highlight Highlighter QueryScorer
                                                SimpleHTMLFormatter)
            (org.apache.lucene.util Version AttributeSource)
-           (org.apache.lucene.store NIOFSDirectory RAMDirectory Directory)))
+           (org.apache.lucene.store NIOFSDirectory RAMDirectory Directory FSDirectory)))
 
 (def ^{:dynamic true} *version* Version/LUCENE_CURRENT)
 (def ^{:dynamic true} *analyzer* (StandardAnalyzer. *version*))
@@ -36,6 +36,11 @@
   [^String dir-path]
   (NIOFSDirectory. (File. dir-path)))
 
+(defn open-disk-index
+  "Open an existing index in a directory on disk."
+  [^String dir-path]
+  (FSDirectory/open (File. dir-path)))
+
 (defn- index-writer
   "Create an IndexWriter."
   ^IndexWriter
@@ -43,7 +48,7 @@
   (IndexWriter. index
                 (IndexWriterConfig. *version* *analyzer*)))
 
-(defn- index-reader
+(defn index-reader
   "Create an IndexReader."
   ^IndexReader
   [index]

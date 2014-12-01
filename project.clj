@@ -1,7 +1,7 @@
 (defproject clucy "0.4.0"
   :description "A Clojure interface to the Lucene search engine"
   :url "http://github/weavejester/clucy"
-  :dependencies [[org.clojure/clojure "1.4.0"]
+  :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.apache.lucene/lucene-core "4.2.0"]
                  [org.apache.lucene/lucene-queryparser "4.2.0"]
                  [org.apache.lucene/lucene-analyzers-common "4.2.0"]
